@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Simon Su (蘇柏丞) - 個人網站">
+    <meta name="author" content="Simon Su">
+    <meta property="og:title" content="Simon Su | Personal Website">
+    <meta property="og:description" content="歡迎來到我的個人網站">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bochengsu.com">
+    <title>Simon Su | Personal Website</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 粒子背景 -->
+    <div id="particles-bg"></div>
+    
+    <!-- 導航列 -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">
+                <span class="logo-text">Simon</span>
+            </a>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link active">首頁</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link">關於我</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#skills" class="nav-link">專業技能</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#projects" class="nav-link">作品集</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#experience" class="nav-link">經歷</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">聯繫我</a>
+                </li>
+            </ul>
+            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- 主視覺區域 -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="hero-greeting animate-fade-up">你好，我是</p>
+                <h1 class="hero-title animate-fade-up delay-1">
+                    <span class="name-en">Simon Su</span>
+                    <span class="name-zh">蘇柏丞</span>
+                </h1>
+                <div class="hero-subtitle animate-fade-up delay-2">
+                    <span class="typing-text" id="typing-text"></span>
+                    <span class="cursor">|</span>
+                </div>
+                <p class="hero-description animate-fade-up delay-3">
+                    熱愛創造與探索的開發者，專注於打造優質的數位體驗。
+                </p>
+                <div class="hero-buttons animate-fade-up delay-4">
+                    <a href="#contact" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i>
+                        <span>聯繫我</span>
+                    </a>
+                    <a href="#projects" class="btn btn-secondary">
+                        <i class="fas fa-folder-open"></i>
+                        <span>查看作品</span>
+                    </a>
+                </div>
+                <div class="hero-social animate-fade-up delay-5">
+                    <a href="https://github.com/" target="_blank" rel="noopener" class="social-link" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://linkedin.com/" target="_blank" rel="noopener" class="social-link" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://twitter.com/" target="_blank" rel="noopener" class="social-link" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="mailto:simon@bochengsu.com" class="social-link" aria-label="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image animate-fade-left">
+                <div class="avatar-container">
+                    <div class="avatar-ring"></div>
+                    <div class="avatar-ring ring-2"></div>
+                    <div class="avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="floating-icons">
+                        <div class="floating-icon icon-1"><i class="fab fa-react"></i></div>
+                        <div class="floating-icon icon-2"><i class="fab fa-js"></i></div>
+                        <div class="floating-icon icon-3"><i class="fab fa-python"></i></div>
+                        <div class="floating-icon icon-4"><i class="fas fa-database"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="#about" class="scroll-indicator">
+            <span class="mouse">
+                <span class="wheel"></span>
+            </span>
+            <span class="scroll-text">往下滾動</span>
+        </a>
+    </section>
+
+    <!-- 關於我 -->
+    <section id="about" class="section about">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">About Me</span>
+                <h2 class="section-title">關於我</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="about-content">
+                <div class="about-image reveal-left">
+                    <div class="image-frame">
+                        <div class="image-placeholder">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="experience-badge">
+                            <span class="badge-number">3+</span>
+                            <span class="badge-text">年經驗</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-text reveal-right">
+                    <h3>熱愛技術，追求卓越</h3>
+                    <p>
+                        嗨！我是 Simon，一位充滿熱情的開發者。我熱愛探索新技術，
+                        致力於創造出色的數位產品和使用者體驗。
+                    </p>
+                    <p>
+                        我相信好的程式碼不僅僅是能夠運行，更應該是優雅、可維護且高效的。
+                        在工作中，我注重細節，追求完美，並且樂於與團隊合作解決複雜的問題。
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <span class="stat-number" data-count="10">0</span>
+                            <span class="stat-plus">+</span>
+                            <span class="stat-label">完成專案</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-count="5">0</span>
+                            <span class="stat-plus">+</span>
+                            <span class="stat-label">技術領域</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-count="100">0</span>
+                            <span class="stat-plus">%</span>
+                            <span class="stat-label">投入熱情</span>
+                        </div>
+                    </div>
+                    <a href="#contact" class="btn btn-primary">
+                        <i class="fas fa-comments"></i>
+                        <span>開始對話</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 專業技能 -->
+    <section id="skills" class="section skills">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Skills</span>
+                <h2 class="section-title">專業技能</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-category reveal-up">
+                    <div class="category-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>前端開發</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">HTML5</span>
+                        <span class="skill-tag">CSS3</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">TypeScript</span>
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">Vue.js</span>
+                        <span class="skill-tag">Next.js</span>
+                        <span class="skill-tag">Tailwind CSS</span>
+                    </div>
+                </div>
+                <div class="skill-category reveal-up delay-1">
+                    <div class="category-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3>後端開發</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Express</span>
+                        <span class="skill-tag">FastAPI</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">Redis</span>
+                        <span class="skill-tag">GraphQL</span>
+                    </div>
+                </div>
+                <div class="skill-category reveal-up delay-2">
+                    <div class="category-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>雲端 & DevOps</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">GCP</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Kubernetes</span>
+                        <span class="skill-tag">CI/CD</span>
+                        <span class="skill-tag">GitHub Actions</span>
+                        <span class="skill-tag">Cloudflare</span>
+                        <span class="skill-tag">Vercel</span>
+                    </div>
+                </div>
+                <div class="skill-category reveal-up delay-3">
+                    <div class="category-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>工具 & 其他</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">VS Code</span>
+                        <span class="skill-tag">Figma</span>
+                        <span class="skill-tag">Postman</span>
+                        <span class="skill-tag">Linux</span>
+                        <span class="skill-tag">Agile</span>
+                        <span class="skill-tag">RESTful API</span>
+                        <span class="skill-tag">Testing</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 作品集 -->
+    <section id="projects" class="section projects">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Projects</span>
+                <h2 class="section-title">作品集</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="projects-filter">
+                <button class="filter-btn active" data-filter="all">全部</button>
+                <button class="filter-btn" data-filter="web">網頁應用</button>
+                <button class="filter-btn" data-filter="mobile">行動應用</button>
+                <button class="filter-btn" data-filter="other">其他</button>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card reveal-up" data-category="web">
+                    <div class="project-image">
+                        <div class="project-placeholder">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" class="project-link" aria-label="查看專案">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                <a href="#" class="project-link" aria-label="GitHub">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>電商平台</h3>
+                        <p>完整的電商解決方案，包含購物車、結帳流程與會員系統。</p>
+                        <div class="project-tech">
+                            <span>React</span>
+                            <span>Node.js</span>
+                            <span>MongoDB</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card reveal-up delay-1" data-category="web">
+                    <div class="project-image">
+                        <div class="project-placeholder">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" class="project-link" aria-label="查看專案">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                <a href="#" class="project-link" aria-label="GitHub">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>專案管理工具</h3>
+                        <p>團隊協作工具，支援任務追蹤、時程管理與即時通訊。</p>
+                        <div class="project-tech">
+                            <span>Vue.js</span>
+                            <span>Firebase</span>
+                            <span>Vuetify</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card reveal-up delay-2" data-category="mobile">
+                    <div class="project-image">
+                        <div class="project-placeholder">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" class="project-link" aria-label="查看專案">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                <a href="#" class="project-link" aria-label="GitHub">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>健康追蹤 App</h3>
+                        <p>記錄運動、飲食與睡眠，提供個人化健康建議。</p>
+                        <div class="project-tech">
+                            <span>React Native</span>
+                            <span>GraphQL</span>
+                            <span>PostgreSQL</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card reveal-up delay-3" data-category="other">
+                    <div class="project-image">
+                        <div class="project-placeholder">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" class="project-link" aria-label="查看專案">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                <a href="#" class="project-link" aria-label="GitHub">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>AI 聊天機器人</h3>
+                        <p>基於自然語言處理的智能客服系統。</p>
+                        <div class="project-tech">
+                            <span>Python</span>
+                            <span>TensorFlow</span>
+                            <span>FastAPI</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 經歷 -->
+    <section id="experience" class="section experience">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Experience</span>
+                <h2 class="section-title">工作經歷</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item reveal-left">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2024 - 現在</div>
+                        <h3>資深軟體工程師</h3>
+                        <h4>科技公司</h4>
+                        <p>負責核心產品開發，帶領團隊實現技術創新，提升系統效能 40%。</p>
+                        <div class="timeline-tags">
+                            <span>React</span>
+                            <span>Node.js</span>
+                            <span>AWS</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item reveal-right">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2022 - 2024</div>
+                        <h3>軟體工程師</h3>
+                        <h4>新創公司</h4>
+                        <p>從零到一打造產品，負責前後端開發與系統架構設計。</p>
+                        <div class="timeline-tags">
+                            <span>Vue.js</span>
+                            <span>Python</span>
+                            <span>Docker</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item reveal-left">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2020 - 2022</div>
+                        <h3>初級工程師</h3>
+                        <h4>軟體開發公司</h4>
+                        <p>參與多個客戶專案開發，累積豐富的實戰經驗。</p>
+                        <div class="timeline-tags">
+                            <span>JavaScript</span>
+                            <span>PHP</span>
+                            <span>MySQL</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 聯繫我 -->
+    <section id="contact" class="section contact">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Contact</span>
+                <h2 class="section-title">聯繫我</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info reveal-left">
+                    <h3>讓我們聊聊</h3>
+                    <p>
+                        無論您是想討論專案合作、工作機會，或只是想打個招呼，
+                        我都很樂意收到您的來信！
+                    </p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <span class="contact-label">Email</span>
+                                <a href="mailto:simon@bochengsu.com">simon@bochengsu.com</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <span class="contact-label">位置</span>
+                                <span>台灣</span>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <div class="contact-text">
+                                <span class="contact-label">網站</span>
+                                <a href="https://bochengsu.com">bochengsu.com</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-social">
+                        <a href="https://github.com/" target="_blank" rel="noopener" class="social-btn" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://linkedin.com/" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://twitter.com/" target="_blank" rel="noopener" class="social-btn" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://instagram.com/" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                <form class="contact-form reveal-right" id="contact-form">
+                    <div class="form-group">
+                        <label for="name">姓名</label>
+                        <input type="text" id="name" name="name" required placeholder="您的姓名">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required placeholder="your@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">主旨</label>
+                        <input type="text" id="subject" name="subject" placeholder="想討論什麼？">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">訊息</label>
+                        <textarea id="message" name="message" rows="5" required placeholder="您的訊息..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <i class="fas fa-paper-plane"></i>
+                        <span>發送訊息</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 頁尾 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="#home" class="footer-logo">Simon Su</a>
+                    <p>打造優質的數位體驗</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#home">首頁</a>
+                    <a href="#about">關於我</a>
+                    <a href="#projects">作品集</a>
+                    <a href="#contact">聯繫我</a>
+                </div>
+                <div class="footer-social">
+                    <a href="https://github.com/" target="_blank" rel="noopener" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://twitter.com/" target="_blank" rel="noopener" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Simon Su. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 回到頂部按鈕 -->
+    <button class="back-to-top" id="back-to-top" aria-label="回到頂部">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>
