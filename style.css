@@ -1216,6 +1216,11 @@ input, textarea {
     min-height: 120px;
 }
 
+/* Cloudflare Turnstile */
+.cf-turnstile {
+    margin-bottom: var(--spacing-lg);
+}
+
 /* ===== Footer ===== */
 .footer {
     background: var(--color-bg);
