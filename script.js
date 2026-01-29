@@ -10,6 +10,19 @@ const filterBtns = document.querySelectorAll('.filter-btn');
 const projectCards = document.querySelectorAll('.project-card');
 const contactForm = document.getElementById('contact-form');
 
+// ===== Utility: Throttle Function =====
+// 節流函數：限制函數執行頻率，提升滾動性能
+function throttle(func, limit) {
+    let inThrottle;
+    return function(...args) {
+        if (!inThrottle) {
+            func.apply(this, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
+        }
+    };
+}
+
 // ===== Typing Effect =====
 const typingTexts = [
     '軟體工程師 💻',
@@ -94,20 +107,76 @@ function handleScroll() {
     lastScrollY = currentScrollY;
 }
 
-window.addEventListener('scroll', handleScroll);
+// 使用節流，每 100ms 最多執行一次
+window.addEventListener('scroll', throttle(handleScroll, 100));
 
 // ===== Mobile Navigation =====
+// 取得選單內可聚焦的元素
+function getFocusableElements() {
+    return navMenu.querySelectorAll('a, button');
+}
+
+// 焦點陷阱：確保 Tab 只在選單內循環
+function handleFocusTrap(e) {
+    if (!navMenu.classList.contains('active')) return;
+    
+    const focusableElements = getFocusableElements();
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+    
+    if (e.key === 'Tab') {
+        if (e.shiftKey) {
+            // Shift + Tab：往前
+            if (document.activeElement === firstElement) {
+                e.preventDefault();
+                lastElement.focus();
+            }
+        } else {
+            // Tab：往後
+            if (document.activeElement === lastElement) {
+                e.preventDefault();
+                firstElement.focus();
+            }
+        }
+    }
+    
+    // ESC 關閉選單
+    if (e.key === 'Escape') {
+        closeMenu();
+    }
+}
+
+// 關閉選單函數
+function closeMenu() {
+    navToggle.classList.remove('active');
+    navMenu.classList.remove('active');
+    document.body.style.overflow = '';
+    document.removeEventListener('keydown', handleFocusTrap);
+    navToggle.focus(); // 返回焦點到漢堡按鈕
+}
+
+// 開啟選單函數
+function openMenu() {
+    navToggle.classList.add('active');
+    navMenu.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    document.addEventListener('keydown', handleFocusTrap);
+    // 聚焦到第一個選單項目
+    const firstLink = navMenu.querySelector('.nav-link');
+    if (firstLink) firstLink.focus();
+}
+
 navToggle.addEventListener('click', () => {
-    navToggle.classList.toggle('active');
-    navMenu.classList.toggle('active');
-    document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+    if (navMenu.classList.contains('active')) {
+        closeMenu();
+    } else {
+        openMenu();
+    }
 });
 
 navLinks.forEach(link => {
     link.addEventListener('click', () => {
-        navToggle.classList.remove('active');
-        navMenu.classList.remove('active');
-        document.body.style.overflow = '';
+        closeMenu();
     });
 });
 
@@ -129,7 +198,8 @@ function updateActiveLink() {
     });
 }
 
-window.addEventListener('scroll', updateActiveLink);
+// 使用節流，每 100ms 最多執行一次
+window.addEventListener('scroll', throttle(updateActiveLink, 100));
 
 // ===== Theme Toggle =====
 function setTheme(theme) {
@@ -188,7 +258,8 @@ function revealOnScroll() {
     });
 }
 
-window.addEventListener('scroll', revealOnScroll);
+// 使用節流，每 100ms 最多執行一次
+window.addEventListener('scroll', throttle(revealOnScroll, 100));
 window.addEventListener('load', revealOnScroll);
 
 // ===== Counter Animation =====
@@ -282,42 +353,24 @@ contactForm.addEventListener('submit', async (e) => {
         
         // Create success message
         const successMessage = document.createElement('div');
-        successMessage.style.cssText = `
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: var(--gradient-primary);
-            color: white;
-            padding: 2rem 3rem;
-            border-radius: 1rem;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            z-index: 1000;
-            text-align: center;
-            animation: fadeInUp 0.3s ease;
-        `;
+        successMessage.className = 'toast-message';
         successMessage.innerHTML = `
-            <i class="fas fa-check-circle" style="font-size: 3rem; margin-bottom: 1rem; display: block;"></i>
-            <h3 style="margin-bottom: 0.5rem;">訊息已送出！</h3>
-            <p style="opacity: 0.9;">感謝您的來信，我會盡快回覆您。</p>
+            <i class="fas fa-check-circle"></i>
+            <h3>訊息已送出！</h3>
+            <p>感謝您的來信，我會盡快回覆您。</p>
         `;
         
         // Add overlay
         const overlay = document.createElement('div');
-        overlay.style.cssText = `
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.5);
-            z-index: 999;
-        `;
+        overlay.className = 'toast-overlay';
         
         document.body.appendChild(overlay);
         document.body.appendChild(successMessage);
         
         // Remove after 3 seconds
         setTimeout(() => {
-            successMessage.style.animation = 'fadeOutDown 0.3s ease forwards';
-            overlay.style.opacity = '0';
+            successMessage.classList.add('fade-out');
+            overlay.classList.add('fade-out');
             setTimeout(() => {
                 successMessage.remove();
                 overlay.remove();
@@ -336,33 +389,6 @@ contactForm.addEventListener('submit', async (e) => {
         submitBtn.disabled = false;
     }
 });
-
-// Add animation keyframes
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translate(-50%, -40%);
-        }
-        to {
-            opacity: 1;
-            transform: translate(-50%, -50%);
-        }
-    }
-    
-    @keyframes fadeOutDown {
-        from {
-            opacity: 1;
-            transform: translate(-50%, -50%);
-        }
-        to {
-            opacity: 0;
-            transform: translate(-50%, -40%);
-        }
-    }
-`;
-document.head.appendChild(style);
 
 // ===== Particles Background =====
 function createParticles() {
@@ -394,26 +420,6 @@ function createParticles() {
         container.appendChild(particle);
     }
 }
-
-// Add particle animation
-const particleStyle = document.createElement('style');
-particleStyle.textContent = `
-    @keyframes floatParticle {
-        0%, 100% {
-            transform: translateY(0) translateX(0);
-        }
-        25% {
-            transform: translateY(-20px) translateX(10px);
-        }
-        50% {
-            transform: translateY(-10px) translateX(-10px);
-        }
-        75% {
-            transform: translateY(-30px) translateX(5px);
-        }
-    }
-`;
-document.head.appendChild(particleStyle);
 
 document.addEventListener('DOMContentLoaded', createParticles);
 
