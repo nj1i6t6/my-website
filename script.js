@@ -240,62 +240,84 @@ filterBtns.forEach(btn => {
 });
 
 // ===== Contact Form =====
-contactForm.addEventListener('submit', (e) => {
+contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
+    
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
+    const originalBtnText = submitBtn.innerHTML;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>發送中...</span>';
+    submitBtn.disabled = true;
     
     // Get form data
     const formData = new FormData(contactForm);
-    const data = Object.fromEntries(formData);
     
-    // Here you would typically send the data to a server
-    // For now, we'll just show a success message
-    
-    // Create success message
-    const successMessage = document.createElement('div');
-    successMessage.style.cssText = `
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: var(--gradient-primary);
-        color: white;
-        padding: 2rem 3rem;
-        border-radius: 1rem;
-        box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        z-index: 1000;
-        text-align: center;
-        animation: fadeInUp 0.3s ease;
-    `;
-    successMessage.innerHTML = `
-        <i class="fas fa-check-circle" style="font-size: 3rem; margin-bottom: 1rem; display: block;"></i>
-        <h3 style="margin-bottom: 0.5rem;">訊息已送出！</h3>
-        <p style="opacity: 0.9;">感謝您的來信，我會盡快回覆您。</p>
-    `;
-    
-    // Add overlay
-    const overlay = document.createElement('div');
-    overlay.style.cssText = `
-        position: fixed;
-        inset: 0;
-        background: rgba(0,0,0,0.5);
-        z-index: 999;
-    `;
-    
-    document.body.appendChild(overlay);
-    document.body.appendChild(successMessage);
-    
-    // Remove after 3 seconds
-    setTimeout(() => {
-        successMessage.style.animation = 'fadeOutDown 0.3s ease forwards';
-        overlay.style.opacity = '0';
+    try {
+        // Send to Formspree
+        const response = await fetch('https://formspree.io/f/mojwjkvp', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+        
+        if (!response.ok) throw new Error('發送失敗');
+        
+        // Create success message
+        const successMessage = document.createElement('div');
+        successMessage.style.cssText = `
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--gradient-primary);
+            color: white;
+            padding: 2rem 3rem;
+            border-radius: 1rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            z-index: 1000;
+            text-align: center;
+            animation: fadeInUp 0.3s ease;
+        `;
+        successMessage.innerHTML = `
+            <i class="fas fa-check-circle" style="font-size: 3rem; margin-bottom: 1rem; display: block;"></i>
+            <h3 style="margin-bottom: 0.5rem;">訊息已送出！</h3>
+            <p style="opacity: 0.9;">感謝您的來信，我會盡快回覆您。</p>
+        `;
+        
+        // Add overlay
+        const overlay = document.createElement('div');
+        overlay.style.cssText = `
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+        `;
+        
+        document.body.appendChild(overlay);
+        document.body.appendChild(successMessage);
+        
+        // Remove after 3 seconds
         setTimeout(() => {
-            successMessage.remove();
-            overlay.remove();
-        }, 300);
-    }, 3000);
-    
-    // Reset form
-    contactForm.reset();
+            successMessage.style.animation = 'fadeOutDown 0.3s ease forwards';
+            overlay.style.opacity = '0';
+            setTimeout(() => {
+                successMessage.remove();
+                overlay.remove();
+            }, 300);
+        }, 3000);
+        
+        // Reset form
+        contactForm.reset();
+        
+    } catch (error) {
+        // Show error message
+        alert('發送失敗，請稍後再試或直接寄信給我！');
+    } finally {
+        // Restore button
+        submitBtn.innerHTML = originalBtnText;
+        submitBtn.disabled = false;
+    }
 });
 
 // Add animation keyframes
