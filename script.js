@@ -461,24 +461,9 @@ if ('IntersectionObserver' in window) {
     });
 }
 
-// ===== Preloader =====
-const preloader = document.getElementById('preloader');
-
-// 頁面載入時顯示 loading 狀態
-document.body.classList.add('loading');
-
+// ===== Page Load Animation (Simplified) =====
 window.addEventListener('load', () => {
-    // 稍微延遲以確保動畫流暢
-    setTimeout(() => {
-        preloader.classList.add('hidden');
-        document.body.classList.remove('loading');
-        document.body.classList.add('loaded');
-        
-        // 動畫結束後移除 preloader DOM
-        setTimeout(() => {
-            preloader.remove();
-        }, 500);
-    }, 800); // 最少顯示 0.8 秒
+    document.body.classList.add('loaded');
 });
 
 // ===== Console Easter Egg =====
