@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://challenges.cloudflare.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; connect-src 'self' https://formspree.io; img-src 'self' data:; frame-src https://challenges.cloudflare.com; form-action 'self' https://formspree.io;">
     <meta name="description" content="Simon Su (蘇柏誠) - 個人網站">
     <meta name="author" content="Simon Su">
     <meta property="og:title" content="Simon Su | Personal Website">
@@ -15,6 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body>
     <!-- 粒子背景 -->
@@ -507,6 +510,10 @@
                         <label for="message">訊息</label>
                         <textarea id="message" name="message" rows="5" required placeholder="您的訊息..."></textarea>
                     </div>
+                    <!-- Honeypot - 防機器人垃圾郵件 -->
+                    <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+                    <!-- Cloudflare Turnstile -->
+                    <div class="cf-turnstile" data-sitekey="0x4AAAAAACVKfkMQ9HT-AJPq" data-theme="auto"></div>
                     <button type="submit" class="btn btn-primary btn-full">
                         <i class="fas fa-paper-plane"></i>
                         <span>發送訊息</span>
