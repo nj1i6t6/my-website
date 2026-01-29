@@ -472,8 +472,6 @@ window.addEventListener('load', () => {
 });
 
 // ===== Console Easter Egg =====
-const eUser = 'simon';
-const eDomain = 'bochengsu.com';
 console.log('%c嗨！歡迎來到我的網站！🚀', 'font-size: 24px; font-weight: bold; color: #6366f1;');
-console.log('%c如果你對程式碼感興趣，歡迎聯絡我！', 'font-size: 14px; color: #64748b;');
-console.log('%c📧 ' + eUser + '@' + eDomain, 'font-size: 12px; color: #06b6d4;');
+console.log('%c如果你對程式碼感興趣，歡迎透過表單聯絡我！', 'font-size: 14px; color: #64748b;');
+console.log('%c💻 查看更多作品：GitHub & LinkedIn', 'font-size: 12px; color: #06b6d4;');
