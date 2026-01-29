@@ -994,12 +994,41 @@ input, textarea {
 .project-placeholder {
     width: 100%;
     aspect-ratio: 16/10;
-    background: var(--gradient-primary);
+    /* 使用漸層背景 */
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 4rem;
-    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 裝飾用的背景光暈 */
+.project-placeholder::before {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 60%);
+    top: -50%;
+    left: -50%;
+    pointer-events: none;
+}
+
+/* 讓中間的 Icon 變大且有質感 */
+.project-placeholder i {
+    font-size: 5rem;
+    color: rgba(255, 255, 255, 0.9);
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+    transform: scale(1);
+    transition: transform 0.4s ease;
+    position: relative;
+    z-index: 1;
+}
+
+/* 滑鼠移過去時的特效 */
+.project-card:hover .project-placeholder i {
+    transform: scale(1.15) rotate(-5deg);
 }
 
 .project-overlay {
@@ -1011,6 +1040,7 @@ input, textarea {
     justify-content: center;
     opacity: 0;
     transition: opacity var(--transition-normal);
+    z-index: 10; /* 確保在 placeholder 圖標之上 */
 }
 
 .project-card:hover .project-overlay {
@@ -1019,22 +1049,27 @@ input, textarea {
 
 .project-links {
     display: flex;
-    gap: var(--spacing-md);
+    gap: var(--spacing-lg);
 }
 
 .project-link {
-    width: 50px;
-    height: 50px;
+    width: 56px;
+    height: 56px;
     border-radius: var(--radius-full);
     background: white;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: var(--font-size-lg);
+    font-size: 1.5rem;
     color: var(--color-primary);
     transform: translateY(20px);
     opacity: 0;
     transition: all var(--transition-normal);
+    /* 增加點擊區域 - 最小觸控目標 44x44px */
+    min-width: 44px;
+    min-height: 44px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .project-card:hover .project-link {
@@ -1045,6 +1080,24 @@ input, textarea {
 .project-link:hover {
     background: var(--color-primary);
     color: white;
+    transform: translateY(0) scale(1.1);
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+}
+
+/* 手機版連結圖標 - 更大的點擊區域 */
+@media (max-width: 768px) {
+    .project-link {
+        width: 52px;
+        height: 52px;
+        font-size: 1.4rem;
+        /* 在手機上預設顯示，不需 hover */
+        transform: translateY(0);
+        opacity: 1;
+    }
+    
+    .project-links {
+        gap: var(--spacing-xl);
+    }
 }
 
 .project-info {
@@ -1640,5 +1693,91 @@ input, textarea {
     .section {
         padding: 2rem 0;
         break-inside: avoid;
+    }
+}
+
+/* ===== JS 動畫 Keyframes ===== */
+/* ===== Toast 訊息樣式 ===== */
+.toast-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    transition: opacity 0.3s ease;
+}
+
+.toast-overlay.fade-out {
+    opacity: 0;
+}
+
+.toast-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--gradient-primary);
+    color: white;
+    padding: 2rem 3rem;
+    border-radius: 1rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    text-align: center;
+    animation: fadeInUp 0.3s ease;
+}
+
+.toast-message.fade-out {
+    animation: fadeOutDown 0.3s ease forwards;
+}
+
+.toast-message i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.toast-message h3 {
+    margin-bottom: 0.5rem;
+}
+
+.toast-message p {
+    opacity: 0.9;
+}
+
+/* 表單成功訊息動畫 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -40%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@keyframes fadeOutDown {
+    from {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+    to {
+        opacity: 0;
+        transform: translate(-50%, -40%);
+    }
+}
+
+/* 粒子背景動畫 */
+@keyframes floatParticle {
+    0%, 100% {
+        transform: translateY(0) translateX(0);
+    }
+    25% {
+        transform: translateY(-20px) translateX(10px);
+    }
+    50% {
+        transform: translateY(-10px) translateX(-10px);
+    }
+    75% {
+        transform: translateY(-30px) translateX(5px);
     }
 }
