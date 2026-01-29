@@ -52,6 +52,23 @@ function typeEffect() {
 // Start typing effect
 document.addEventListener('DOMContentLoaded', () => {
     setTimeout(typeEffect, 1000);
+    
+    // ===== Email Obfuscation =====
+    // 防止爬蟲抓取 Email，用 JS 動態生成
+    const emailUser = 'simon';
+    const emailDomain = 'bochengsu.com';
+    const email = emailUser + '@' + emailDomain;
+    
+    // Hero 區域的 email icon 連結
+    document.querySelectorAll('.email-link').forEach(link => {
+        link.href = 'mailto:' + email;
+    });
+    
+    // Contact 區域顯示 email 文字
+    document.querySelectorAll('.email-link-text').forEach(link => {
+        link.href = 'mailto:' + email;
+        link.textContent = email;
+    });
 });
 
 // ===== Navbar Scroll Effect =====
@@ -434,12 +451,29 @@ if ('IntersectionObserver' in window) {
     });
 }
 
-// ===== Preloader (Optional) =====
+// ===== Preloader =====
+const preloader = document.getElementById('preloader');
+
+// 頁面載入時顯示 loading 狀態
+document.body.classList.add('loading');
+
 window.addEventListener('load', () => {
-    document.body.classList.add('loaded');
+    // 稍微延遲以確保動畫流暢
+    setTimeout(() => {
+        preloader.classList.add('hidden');
+        document.body.classList.remove('loading');
+        document.body.classList.add('loaded');
+        
+        // 動畫結束後移除 preloader DOM
+        setTimeout(() => {
+            preloader.remove();
+        }, 500);
+    }, 800); // 最少顯示 0.8 秒
 });
 
 // ===== Console Easter Egg =====
+const eUser = 'simon';
+const eDomain = 'bochengsu.com';
 console.log('%c嗨！歡迎來到我的網站！🚀', 'font-size: 24px; font-weight: bold; color: #6366f1;');
-console.log('%c如果你對程式碼感興趣，歡迎聯繫我！', 'font-size: 14px; color: #64748b;');
-console.log('%c📧 simon@bochengsu.com', 'font-size: 12px; color: #06b6d4;');
+console.log('%c如果你對程式碼感興趣，歡迎聯絡我！', 'font-size: 14px; color: #64748b;');
+console.log('%c📧 ' + eUser + '@' + eDomain, 'font-size: 12px; color: #06b6d4;');
