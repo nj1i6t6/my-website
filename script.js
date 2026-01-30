@@ -71,16 +71,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const emailUser = 'simon';
     const emailDomain = 'bochengsu.com';
     const email = emailUser + '@' + emailDomain;
+    const mailtoLink = 'mailto:' + email;
     
     // Hero 區域的 email icon 連結
     document.querySelectorAll('.email-link').forEach(link => {
-        link.href = 'mailto:' + email;
+        link.href = mailtoLink;
+        // 確保點擊時能正確跳轉
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.location.href = mailtoLink;
+        });
     });
     
     // Contact 區域顯示 email 文字
     document.querySelectorAll('.email-link-text').forEach(link => {
-        link.href = 'mailto:' + email;
+        link.href = mailtoLink;
         link.textContent = email;
+        // 確保點擊時能正確跳轉
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.location.href = mailtoLink;
+        });
     });
 });
 
@@ -468,5 +479,5 @@ window.addEventListener('load', () => {
 
 // ===== Console Easter Egg =====
 console.log('%c嗨！歡迎來到我的網站！🚀', 'font-size: 24px; font-weight: bold; color: #6366f1;');
-console.log('%c如果你對程式碼感興趣，歡迎透過表單聯絡我！', 'font-size: 14px; color: #64748b;');
+console.log('%c如果你對我感興趣，歡迎透過表單聯絡我！', 'font-size: 14px; color: #64748b;');
 console.log('%c💻 查看更多作品：GitHub & LinkedIn', 'font-size: 12px; color: #06b6d4;');
