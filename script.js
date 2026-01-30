@@ -438,16 +438,21 @@ document.addEventListener('DOMContentLoaded', createParticles);
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         const href = this.getAttribute('href');
-        // 跳過空的 # 連結
-        if (!href || href === '#') return;
+        // 跳過空的 # 連結、mailto 連結、或非錨點連結
+        if (!href || href === '#' || !href.startsWith('#')) return;
         
         e.preventDefault();
-        const target = document.querySelector(href);
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+        try {
+            const target = document.querySelector(href);
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        } catch (err) {
+            // 如果選擇器無效，忽略錯誤
+            console.warn('Invalid selector:', href);
         }
     });
 });
