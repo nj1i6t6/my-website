@@ -1010,11 +1010,19 @@ input, textarea {
 .project-image {
     position: relative;
     overflow: hidden;
+    aspect-ratio: 16/9;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 .project-placeholder {
     width: 100%;
-    aspect-ratio: 16/10;
+    aspect-ratio: 16/9;
     /* 使用漸層背景 */
     background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
     display: flex;
