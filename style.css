@@ -762,7 +762,7 @@ input, textarea {
     display: inline-block;
     font-size: var(--font-size-sm);
     font-weight: 600;
-    color: var(--color-primary);
+    color: var(--color-primary-dark);
     text-transform: uppercase;
     letter-spacing: 2px;
     margin-bottom: var(--spacing-sm);

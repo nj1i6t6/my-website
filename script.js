@@ -256,16 +256,18 @@ backToTop.addEventListener('click', () => {
 
 // ===== Reveal on Scroll Animation =====
 function revealOnScroll() {
-    const reveals = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right');
-    const windowHeight = window.innerHeight;
-    
-    reveals.forEach(element => {
-        const elementTop = element.getBoundingClientRect().top;
-        const revealPoint = 150;
+    requestAnimationFrame(() => {
+        const reveals = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right');
+        const windowHeight = window.innerHeight;
         
-        if (elementTop < windowHeight - revealPoint) {
-            element.classList.add('revealed');
-        }
+        reveals.forEach(element => {
+            const elementTop = element.getBoundingClientRect().top;
+            const revealPoint = 150;
+            
+            if (elementTop < windowHeight - revealPoint) {
+                element.classList.add('revealed');
+            }
+        });
     });
 }
 
