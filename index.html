@@ -49,8 +49,25 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- 預載入關鍵字體 -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+TC:wght@400;700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome - 首屏需要圖標，同步載入 -->
     <link rel="stylesheet" href="css/fontawesome.min.css">
+    <!-- 關鍵 CSS 內嵌 - 首屏渲染所需的最小樣式 -->
+    <style>
+        :root{--color-bg:#fff;--color-text:#1e293b;--color-primary:#6366f1;--font-primary:'Inter','Noto Sans TC',-apple-system,BlinkMacSystemFont,sans-serif}
+        [data-theme="dark"]{--color-bg:#0f172a;--color-text:#f1f5f9}
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        body{font-family:var(--font-primary);background:var(--color-bg);color:var(--color-text);line-height:1.6}
+        .navbar{position:fixed;top:0;left:0;right:0;z-index:300;background:transparent}
+        .nav-container{display:flex;align-items:center;justify-content:space-between;max-width:1200px;margin:0 auto;padding:1rem 1.5rem}
+        .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:6rem 1.5rem 3rem}
+        .container{max-width:1200px;margin:0 auto;padding:0 1.5rem}
+        .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.875rem 1.75rem;border-radius:.5rem;font-weight:600;transition:all .3s}
+        .btn-primary{background:linear-gradient(135deg,#6366f1 0%,#8b5cf6 50%,#06b6d4 100%);color:#fff}
+    </style>
     <link rel="stylesheet" href="style.css">
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     
@@ -138,6 +155,8 @@
         </div>
     </nav>
 
+    <!-- 主要內容區 -->
+    <main id="main-content">
     <!-- 主視覺區域 -->
     <section id="home" class="hero">
         <div class="hero-content">
@@ -165,7 +184,7 @@
                     </a>
                 </div>
                 <div class="hero-social animate-fade-up delay-5">
-                    <a href="https://github.com/nj1i6t6" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
+                    <a href="https://github.com/nj1i6t6" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub - 個人首頁">
                         <i class="fab fa-github"></i>
                     </a>
                     <a href="https://www.linkedin.com/in/柏誠-蘇-066816375" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
@@ -357,13 +376,19 @@
             <div class="projects-grid">
                 <div class="project-card reveal-up" data-category="web">
                     <div class="project-image">
-                        <img src="Image/Dashboard.avif" alt="領頭羊博士 Dashboard" width="1280" height="720" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <img src="Image/Dashboard.avif" 
+                             srcset="Image/Dashboard-560.avif 560w, Image/Dashboard.avif 1280w"
+                             sizes="(max-width: 768px) 100vw, 560px"
+                             alt="領頭羊博士 Dashboard" 
+                             width="1280" height="720" 
+                             loading="lazy" 
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         <div class="project-placeholder" style="display:none;">
                             <i class="fas fa-seedling"></i>
                         </div>
                         <div class="project-overlay">
                             <div class="project-links">
-                                <a href="https://github.com/nj1i6t6/Dr.Goat-AI-Agent-BETA.git" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="GitHub">
+                                <a href="https://github.com/nj1i6t6/Dr.Goat-AI-Agent-BETA.git" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="GitHub - 領頭羊博士專案原始碼">
                                     <i class="fab fa-github"></i>
                                 </a>
                             </div>
@@ -515,7 +540,7 @@
                         </div>
                     </div>
                     <div class="contact-social">
-                        <a href="https://github.com/nj1i6t6" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="GitHub">
+                        <a href="https://github.com/nj1i6t6" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="GitHub - 社群連結">
                             <i class="fab fa-github"></i>
                         </a>
                         <a href="https://www.linkedin.com/in/柏誠-蘇-066816375" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="LinkedIn">
@@ -558,6 +583,7 @@
             </div>
         </div>
     </section>
+    </main>
 
     <!-- 頁尾 -->
     <footer class="footer">
@@ -574,7 +600,7 @@
                     <a href="#contact">聯繫我</a>
                 </div>
                 <div class="footer-social">
-                    <a href="https://github.com/nj1i6t6" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                    <a href="https://github.com/nj1i6t6" target="_blank" rel="noopener noreferrer" aria-label="GitHub - 頁尾連結">
                         <i class="fab fa-github"></i>
                     </a>
                     <a href="https://www.linkedin.com/in/柏誠-蘇-066816375" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
